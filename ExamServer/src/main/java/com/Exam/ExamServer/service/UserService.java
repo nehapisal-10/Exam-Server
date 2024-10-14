@@ -10,6 +10,7 @@ public interface UserService {
     public User createUser(User user, Set<UserRole> userRoles) throws Exception;
     //get user by username
     public User getUser(String username);
+    public Set<User> getUsers();
     public boolean deleteUser(Long userId);
 
 }

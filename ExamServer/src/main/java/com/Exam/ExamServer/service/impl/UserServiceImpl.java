@@ -7,6 +7,8 @@ import com.Exam.ExamServer.repository.UserRepository;
 import com.Exam.ExamServer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedHashSet;
 import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,6 +40,10 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findByUsername(username);
     }
 
+    @Override
+    public Set<User> getUsers() {
+            return new LinkedHashSet<>(this.userRepository.findAll());
+    }
     @Override
     public boolean deleteUser(Long userId) {
         this.userRepository.deleteById(userId);

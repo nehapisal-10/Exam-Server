@@ -39,7 +39,12 @@ public class UserController {
         userRole.setRole(role);
 
         roles.add(userRole);
+
         return userService.createUser(user,roles);
+    }
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getUsers(){
+        return ResponseEntity.ok(this.userService.getUsers());
     }
 
     @GetMapping("/{username}")
@@ -56,7 +61,6 @@ public class UserController {
     public String greet(){
         return "Welcome to Online Exam Portal";
     }
-
     @ExceptionHandler(UserFoundException.class)
     public ResponseEntity<?> exceptionHandler(UserFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
